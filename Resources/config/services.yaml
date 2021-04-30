@@ -12,16 +12,16 @@ services:
     public: false
     class: CIBlockSection
 
-  model_bundle.factory.elements:
+  model_bundle.factory_elements:
     public: true
     class: Prokl\BitrixModelBundle\Services\Factories\ModelElementFactory
     arguments: [!tagged_locator { tag: 'iblock.element.model', index_by: 'key' }, '@model_bundle.ciblockelement']
 
-  Prokl\BitrixModelBundle\Services\Factories\ModelElementFactory: '@model_bundle.factory.elements'
+  Prokl\BitrixModelBundle\Services\Factories\ModelElementFactory: '@model_bundle.factory_elements'
 
-  model_bundle.factory.sections:
+  model_bundle.factory_sections:
     public: true
     class: Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory
     arguments: [!tagged_locator { tag: 'iblock.section.model', index_by: 'key' }, '@model_bundle.ciblocksection']
 
-  Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory: '@model_bundle.factory.sections'
+  Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory: '@model_bundle.factory_sections'
