@@ -8,7 +8,7 @@
 
 ## Использование
 
-Все сервисы, наследующикся от `Arrilot\BitrixModels\Models\ElementModel` или `Arrilot\BitrixModels\Models\SectionModel`
+Все сервисы, наследующиеся от `Arrilot\BitrixModels\Models\ElementModel` или `Arrilot\BitrixModels\Models\SectionModel`
 автоматически регистрируются в качестве моделей.
 
 Два основных сервиса:
