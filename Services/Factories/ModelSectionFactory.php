@@ -5,6 +5,7 @@ namespace Prokl\BitrixModelBundle\Services\Factories;
 use Arrilot\BitrixModels\Models\SectionModel;
 use CIBlockSection;
 use LogicException;
+use Prokl\BitrixModelBundle\Services\Traits\IblockTrait;
 use Symfony\Component\DependencyInjection\ServiceLocator;
 
 /**
@@ -15,6 +16,8 @@ use Symfony\Component\DependencyInjection\ServiceLocator;
  */
 class ModelSectionFactory
 {
+    use IblockTrait;
+
     /**
      * @var ServiceLocator $modelLocator Сервисы, помеченные в контейнере тэгом iblock.model.
      */
@@ -50,6 +53,21 @@ class ModelSectionFactory
     public function getModel(int $idSection) : SectionModel
     {
         $iblockId = $this->getIblockId($idSection);
+
+        return $this->getModelByIdIblock($iblockId);
+    }
+
+    /**
+     * Модель по коду и типу инфоблока.
+     *
+     * @param string $iblockType Тип инфоблока.
+     * @param string $iblockCode Код инфоблока.
+     *
+     * @return SectionModel
+     */
+    public function getModelByCodeIblock(string $iblockType, string $iblockCode) : SectionModel
+    {
+        $iblockId = $this->getIBlockIdByCode($iblockType, $iblockCode);
 
         return $this->getModelByIdIblock($iblockId);
     }

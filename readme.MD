@@ -21,6 +21,7 @@
 
 - `getModel(int $id)` - отдает модель по ID элемента  
 - `getModelByIdIblock(int $id)` - отдает модель по ID инфоблока  
+- `getModelByCodeIblock(string $iblockType, string $iblockCode)` - отдает модель по типу и коду инфоблока  
 
 3) `Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory`
 

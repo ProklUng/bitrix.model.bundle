@@ -5,6 +5,7 @@ namespace Prokl\BitrixModelBundle\Services\Factories;
 use Arrilot\BitrixModels\Models\ElementModel;
 use CIBlockElement;
 use LogicException;
+use Prokl\BitrixModelBundle\Services\Traits\IblockTrait;
 use Symfony\Component\DependencyInjection\ServiceLocator;
 
 /**
@@ -15,6 +16,8 @@ use Symfony\Component\DependencyInjection\ServiceLocator;
  */
 class ModelElementFactory
 {
+    use IblockTrait;
+
     /**
      * @var ServiceLocator $modelLocator Сервисы, помеченные в контейнере тэгом iblock.model.
      */
@@ -50,6 +53,21 @@ class ModelElementFactory
     public function getModel(int $idElement) : ElementModel
     {
         $iblockId = $this->getIblockId($idElement);
+
+        return $this->getModelByIdIblock($iblockId);
+    }
+
+    /**
+     * Модель по коду и типу инфоблока.
+     *
+     * @param string $iblockType Тип инфоблока.
+     * @param string $iblockCode Код инфоблока.
+     *
+     * @return ElementModel
+     */
+    public function getModelByCodeIblock(string $iblockType, string $iblockCode) : ElementModel
+    {
+        $iblockId = $this->getIBlockIdByCode($iblockType, $iblockCode);
 
         return $this->getModelByIdIblock($iblockId);
     }
