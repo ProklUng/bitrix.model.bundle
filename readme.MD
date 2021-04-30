@@ -22,10 +22,18 @@
 - `getModel(int $id)` - отдает модель по ID элемента  
 - `getModelByIdIblock(int $id)` - отдает модель по ID инфоблока  
 
+3) `Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory`
+
+Методы:
+
+- `getModel(string $dataClass)` - отдает модель по классу сущности  
+
+
 ## Фасады
 
 Если установлен [бандл](https://github.com/ProklUng/facade.bundle), то автоматически устанавливаются два фасада:
 
 - `ModelElementFacade`
 - `ModelSectionFacade`
+- `D7ModelFacade`
 

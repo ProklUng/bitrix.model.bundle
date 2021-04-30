@@ -25,3 +25,10 @@ services:
     arguments: [!tagged_locator { tag: 'iblock.section.model', index_by: 'key' }, '@model_bundle.ciblocksection']
 
   Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory: '@model_bundle.factory_sections'
+
+  model_bundle.d7_model:
+    public: true
+    class: Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory
+    arguments: [!tagged_locator { tag: 'd7.model', index_by: 'key' }]
+
+  Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory: '@model_bundle.d7_model'
