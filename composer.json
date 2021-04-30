@@ -1,0 +1,33 @@
+{
+    "name": "proklung/bitrix-model-bundle",
+    "description": "Бандл для Битрикс + Symfony для обращения с моделями инфоблоков.",
+    "type": "symfony-bundle",
+    "keywords": [
+        "bitrix",
+        "bitrix-symfony",
+        "bitrix-bundle"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gavrilov Fedy",
+            "email": "fedor.gavrilov.75@mail.ru",
+            "homepage": "https://github.com/ProklUng"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ProklUng/bitrix.model.bundle/issues",
+        "source": "https://github.com/ProklUng/bitrix.model.bundle"
+    },
+    "autoload": {
+        "psr-4": {
+            "Prokl\\BitrixModelBundle\\": ""
+        }
+    },
+    "require": {
+        "php": ">=7.3",
+        "symfony/dependency-injection": "^4.0 || ^5.0",
+        "symfony/http-kernel": "^4.0 || ^5.0",
+        "arrilot/bitrix-models": "dev-master"
+    }
+}
