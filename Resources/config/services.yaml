@@ -22,6 +22,6 @@ services:
   model_bundle.factory.sections:
     public: true
     class: Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory
-    arguments: [!tagged_locator { tag: 'iblock.section.model', index_by: 'key' }, '@CIBlockSection']
+    arguments: [!tagged_locator { tag: 'iblock.section.model', index_by: 'key' }, '@model_bundle.ciblocksection']
 
   Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory: '@model_bundle.factory.sections'

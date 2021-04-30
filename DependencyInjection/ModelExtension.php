@@ -4,6 +4,7 @@ namespace Prokl\BitrixModelBundle\DependencyInjection;
 
 use Arrilot\BitrixModels\Models\ElementModel;
 use Arrilot\BitrixModels\Models\SectionModel;
+use Exception;
 use LogicException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -22,6 +23,7 @@ class ModelExtension extends Extension
 
     /**
      * @inheritDoc
+     * @throws Exception
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -38,13 +40,13 @@ class ModelExtension extends Extension
     /**
      * @inheritDoc
      */
-    public function getAlias()
+    public function getAlias() : string
     {
         return 'model';
     }
 
     /**
-     * Проверка на существование Твига.
+     * Проверка на существование в системе пакета моделей.
      *
      * @return void
      * @throws LogicException
