@@ -21,3 +21,11 @@
 
 - `getModel(int $id)` - отдает модель по ID элемента  
 - `getModelByIdIblock(int $id)` - отдает модель по ID инфоблока  
+
+## Фасады
+
+Если установлен [бандл](https://github.com/ProklUng/facade.bundle), то автоматически устанавливаются два фасада:
+
+- `ModelElementFacade`
+- `ModelSectionFacade`
+

@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  Prokl\BitrixModelBundle\Services\Facades\ModelElementFacade: ~
+  Prokl\BitrixModelBundle\Services\Facades\ModelSectionFacade: ~

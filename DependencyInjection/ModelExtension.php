@@ -25,7 +25,7 @@ class ModelExtension extends Extension
      * @inheritDoc
      * @throws Exception
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container) : void
     {
         $this->checkDependency();
 
@@ -35,6 +35,11 @@ class ModelExtension extends Extension
         );
 
         $loader->load('services.yaml');
+
+        // Фасады подтягиваются только, если установлен соответствующий бандл.
+        if (class_exists('Prokl\FacadeBundle\Services\AbstractFacade')) {
+            $loader->load('facades.yaml');
+        }
     }
 
     /**
