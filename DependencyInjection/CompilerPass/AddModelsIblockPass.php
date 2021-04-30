@@ -1,6 +1,6 @@
 <?php
 
-namespace Local\Bundles\ModelBundle\DependencyInjection\CompilerPass;
+namespace Prokl\BitrixModelBundle\DependencyInjection\CompilerPass;
 
 use Arrilot\BitrixModels\Models\ElementModel;
 use Arrilot\BitrixModels\Models\SectionModel;
@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * Class AddModelsIblockPass
- * @package Local\Bundles\ModelBundle\DependencyInjection\CompilerPass
+ * @package Prokl\BitrixModelBundle\DependencyInjection\CompilerPass
  *
  * @since 30.01.2021
  */

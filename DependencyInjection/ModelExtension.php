@@ -1,6 +1,6 @@
 <?php
 
-namespace Local\Bundles\ModelBundle\DependencyInjection;
+namespace Prokl\BitrixModelBundle\DependencyInjection;
 
 use Arrilot\BitrixModels\Models\ElementModel;
 use Arrilot\BitrixModels\Models\SectionModel;

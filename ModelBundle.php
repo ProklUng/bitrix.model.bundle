@@ -1,15 +1,15 @@
 <?php
 
-namespace Local\Bundles\ModelBundle;
+namespace Prokl\BitrixModelBundle;
 
-use Local\Bundles\ModelBundle\DependencyInjection\CompilerPass\AddModelsIblockPass;
-use Local\Bundles\ModelBundle\DependencyInjection\ModelExtension;
+use Prokl\BitrixModelBundle\DependencyInjection\CompilerPass\AddModelsIblockPass;
+use Prokl\BitrixModelBundle\DependencyInjection\ModelExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Class ModelBundle
- * @package Local\Bundles\ModelBundle
+ * @package Prokl\BitrixModelBundle
  *
  * @since 30.01.2021
  */

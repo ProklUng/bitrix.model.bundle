@@ -1,6 +1,6 @@
 <?php
 
-namespace Local\Bundles\ModelBundle\Services\Factories;
+namespace Prokl\BitrixModelBundle\Services\Factories;
 
 use Arrilot\BitrixModels\Models\SectionModel;
 use CIBlockSection;
@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ServiceLocator;
 
 /**
  * Class ModelSectionFactory
- * @package Local\Bundles\ModelBundle\Services\Factories
+ * @package Prokl\BitrixModelBundle\Services\Factories
  *
  * @since 30.01.2021
  */
