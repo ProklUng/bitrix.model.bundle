@@ -6,3 +6,4 @@ services:
 
   Prokl\BitrixModelBundle\Services\Facades\ModelElementFacade: ~
   Prokl\BitrixModelBundle\Services\Facades\ModelSectionFacade: ~
+  Prokl\BitrixModelBundle\Services\Facades\D7ModelFacade: ~
