@@ -15,14 +15,14 @@ services:
   model_bundle.factory_elements:
     public: true
     class: Prokl\BitrixModelBundle\Services\Factories\ModelElementFactory
-    arguments: [!tagged_locator { tag: 'iblock.element.model', index_by: 'key' }, '@model_bundle.ciblockelement']
+    arguments: [!tagged_locator { tag: 'iblock.element.model', index_by: 'key' }, '@model_bundle.ciblockelement', '@model_bundle.cacher']
 
   Prokl\BitrixModelBundle\Services\Factories\ModelElementFactory: '@model_bundle.factory_elements'
 
   model_bundle.factory_sections:
     public: true
     class: Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory
-    arguments: [!tagged_locator { tag: 'iblock.section.model', index_by: 'key' }, '@model_bundle.ciblocksection']
+    arguments: [!tagged_locator { tag: 'iblock.section.model', index_by: 'key' }, '@model_bundle.ciblocksection', '@model_bundle.cacher']
 
   Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory: '@model_bundle.factory_sections'
 
@@ -32,3 +32,9 @@ services:
     arguments: [!tagged_locator { tag: 'd7.model', index_by: 'key' }]
 
   Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory: '@model_bundle.d7_model'
+
+  # Кэш
+  model_bundle.cacher:
+    public: false
+    class: WebArch\BitrixCache\AntiStampedeCacheAdapter
+    arguments: ['/', '%bitrix-model.ttl_cache%', '%bitrix-model.cache_dir%']

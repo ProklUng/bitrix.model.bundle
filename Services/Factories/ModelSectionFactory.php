@@ -2,11 +2,15 @@
 
 namespace Prokl\BitrixModelBundle\Services\Factories;
 
+use Arrilot\BitrixModels\Models\ElementModel;
 use Arrilot\BitrixModels\Models\SectionModel;
 use CIBlockSection;
 use LogicException;
 use Prokl\BitrixModelBundle\Services\Traits\IblockTrait;
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ServiceLocator;
+use Symfony\Contracts\Cache\CacheInterface;
 
 /**
  * Class ModelSectionFactory
@@ -29,17 +33,25 @@ class ModelSectionFactory
     private $blockSection;
 
     /**
+     * @var CacheInterface $cacher Кэшер.
+     */
+    private $cacher;
+
+    /**
      * ModelSectionFactory constructor.
      *
      * @param ServiceLocator $locator      Сервисы, помеченные в контейнере тэгом iblock.model.
      * @param CIBlockSection $blockSection Битриксовый CIBlockSection.
+     * @param CacheInterface $cacher       Кэшер.
      */
     public function __construct(
         ServiceLocator $locator,
-        CIBlockSection $blockSection
+        CIBlockSection $blockSection,
+        CacheInterface $cacher
     ) {
         $this->modelLocator = $locator;
         $this->blockSection = $blockSection;
+        $this->cacher = $cacher;
     }
 
     /**
@@ -58,6 +70,31 @@ class ModelSectionFactory
     }
 
     /**
+     * Модель по ID элемента. С использованием кэша.
+     *
+     * @param integer $idSection ID подраздела.
+     *
+     * @return SectionModel
+     * @throws LogicException|InvalidArgumentException
+     */
+    public function getModelCached(int $idSection) : SectionModel
+    {
+        $keyCache = __CLASS__ . __METHOD__ . $idSection;
+        $iblockId = $this->cacher->get(
+            $keyCache,
+            /**
+             * @param CacheItemInterface $item
+             * @return mixed
+             */
+            function (CacheItemInterface $item) use ($idSection) {
+                return $this->getIblockId($idSection);
+            }
+        );
+
+        return $this->getModelByIdIblock($iblockId);
+    }
+
+    /**
      * Модель по коду и типу инфоблока.
      *
      * @param string $iblockType Тип инфоблока.
@@ -68,6 +105,32 @@ class ModelSectionFactory
     public function getModelByCodeIblock(string $iblockType, string $iblockCode) : SectionModel
     {
         $iblockId = $this->getIBlockIdByCode($iblockType, $iblockCode);
+
+        return $this->getModelByIdIblock($iblockId);
+    }
+
+    /**
+     * Модель по коду и типу инфоблока.
+     *
+     * @param string $iblockType Тип инфоблока.
+     * @param string $iblockCode Код инфоблока.
+     *
+     * @return SectionModel
+     * @throws InvalidArgumentException
+     */
+    public function getModelByCodeIblockCached(string $iblockType, string $iblockCode) : SectionModel
+    {
+        $keyCache = __CLASS__ . __METHOD__ . $iblockType . $iblockCode;
+        $iblockId = $this->cacher->get(
+            $keyCache,
+            /**
+             * @param CacheItemInterface $item
+             * @return mixed
+             */
+            function (CacheItemInterface $item) use ($iblockType, $iblockCode) {
+                return $this->getIBlockIdByCode($iblockType, $iblockCode);
+            }
+        );
 
         return $this->getModelByIdIblock($iblockId);
     }

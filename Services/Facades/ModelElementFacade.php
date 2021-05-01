@@ -11,8 +11,10 @@ use Prokl\FacadeBundle\Services\AbstractFacade;
  * @since 30.04.2021
  *
  * @method static getModel(int $idElement)
+ * @method static getModelCached(int $idElement)
  * @method static getModelByIdIblock(int $iblockId)
  * @method static getModelByCodeIblock(string $iblockType, string $iblockCode)
+ * @method static getModelByCodeIblockCached(string $iblockType, string $iblockCode)
  */
 class ModelElementFacade extends AbstractFacade
 {

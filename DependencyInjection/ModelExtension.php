@@ -29,6 +29,12 @@ class ModelExtension extends Extension
     {
         $this->checkDependency();
 
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('bitrix-model.ttl_cache', $config['ttl_cache']);
+        $container->setParameter('bitrix-model.cache_dir', $config['cache_dir']);
+
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(__DIR__ . self::DIR_CONFIG)
@@ -47,7 +53,7 @@ class ModelExtension extends Extension
      */
     public function getAlias() : string
     {
-        return 'model';
+        return 'bitrix-model';
     }
 
     /**

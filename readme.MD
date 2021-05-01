@@ -20,15 +20,16 @@
 Методы:
 
 - `getModel(int $id)` - отдает модель по ID элемента  
+- `getModelCached(int $id)` - отдает модель по ID элемента (запрос кэшируется) 
 - `getModelByIdIblock(int $id)` - отдает модель по ID инфоблока  
 - `getModelByCodeIblock(string $iblockType, string $iblockCode)` - отдает модель по типу и коду инфоблока  
+- `getModelByCodeIblockCached(string $iblockType, string $iblockCode)` - отдает модель по типу и коду инфоблока (запрос кэшируется)  
 
 3) `Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory`
 
 Методы:
 
 - `getModel(string $dataClass)` - отдает модель по классу сущности  
-
 
 ## Фасады
 
