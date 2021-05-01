@@ -2,10 +2,10 @@
 
 namespace Prokl\BitrixModelBundle\Services\Factories;
 
-use Arrilot\BitrixModels\Models\ElementModel;
 use Arrilot\BitrixModels\Models\SectionModel;
 use CIBlockSection;
 use LogicException;
+use Prokl\BitrixModelBundle\Services\Traits\CacheTrait;
 use Prokl\BitrixModelBundle\Services\Traits\IblockTrait;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\InvalidArgumentException;
@@ -21,6 +21,7 @@ use Symfony\Contracts\Cache\CacheInterface;
 class ModelSectionFactory
 {
     use IblockTrait;
+    use CacheTrait;
 
     /**
      * @var ServiceLocator $modelLocator Сервисы, помеченные в контейнере тэгом iblock.model.
@@ -79,7 +80,7 @@ class ModelSectionFactory
      */
     public function getModelCached(int $idSection) : SectionModel
     {
-        $keyCache = __CLASS__ . __METHOD__ . $idSection;
+        $keyCache = $this->getCacheKey(__CLASS__ . __METHOD__ . $idSection);
         $iblockId = $this->cacher->get(
             $keyCache,
             /**
@@ -120,7 +121,8 @@ class ModelSectionFactory
      */
     public function getModelByCodeIblockCached(string $iblockType, string $iblockCode) : SectionModel
     {
-        $keyCache = __CLASS__ . __METHOD__ . $iblockType . $iblockCode;
+        $keyCache = $this->getCacheKey(__CLASS__ . __METHOD__ . $iblockType . $iblockCode);
+
         $iblockId = $this->cacher->get(
             $keyCache,
             /**
