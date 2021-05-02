@@ -32,13 +32,3 @@ services:
     arguments: [!tagged_locator { tag: 'd7.model', index_by: 'key' }]
 
   Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory: '@model_bundle.d7_model'
-
-  model_bundle.env_resolver:
-    public: false
-    class: Prokl\BitrixModelBundle\Services\Utils\EnvironmentResolver
-    arguments: ['%env(resolve:DEBUG)%']
-
-  model_bundle.env_resolver_factory:
-    public: false
-    class: Prokl\BitrixModelBundle\Services\Utils\EnvironmentResolver
-    factory: ['@model_bundle.env_resolver', 'getEnv']
