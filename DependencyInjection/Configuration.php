@@ -22,7 +22,8 @@ final class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('ttl_cache')->info('Время жизни кэша')->defaultValue(3600)->end()
-                ->scalarNode('cache_dir')->info('Папка с кэшом')->defaultValue('/cache/bitrix_models_bundle/')->end()
+                ->scalarNode('cache_dir')->info('Папка с кэшом')->defaultValue('/cache/bitrix_models_bundle')->end()
+                ->scalarNode('proxy_cache_dir')->info('Папка с кэшом прокси-файлов')->defaultValue('/bitrix/cache/bitrix_models_bundle/proxy')->end()
             ->end()
         ;
 

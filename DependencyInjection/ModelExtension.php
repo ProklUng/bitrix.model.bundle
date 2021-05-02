@@ -34,6 +34,7 @@ class ModelExtension extends Extension
 
         $container->setParameter('bitrix-model.ttl_cache', $config['ttl_cache']);
         $container->setParameter('bitrix-model.cache_dir', $config['cache_dir']);
+        $container->setParameter('bitrix-model.proxy_cache_dir', $config['proxy_cache_dir']);
 
         $loader = new YamlFileLoader(
             $container,
