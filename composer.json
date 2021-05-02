@@ -30,6 +30,7 @@
         "symfony/http-kernel": "^4.0 || ^5.0",
         "symfony/config": "~4|~5",
         "arrilot/bitrix-models": "dev-master",
-        "webarchitect609/bitrix-cache": "^1.9"
+        "webarchitect609/bitrix-cache": "^1.9",
+        "proklung/cache-proxificator": "^1.1"
     }
 }

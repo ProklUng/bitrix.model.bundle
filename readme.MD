@@ -11,21 +11,20 @@
 Все сервисы, наследующиеся от `Arrilot\BitrixModels\Models\ElementModel` или `Arrilot\BitrixModels\Models\SectionModel`
 автоматически регистрируются в качестве моделей.
 
-Два основных сервиса:
+Основные сервисы:
 
 1) `Prokl\BitrixModelBundle\Services\Factories\ModelElementFactory`
-
-2) `Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory`
+2) `Prokl\BitrixModelBundle\Services\Factories\ModelElementFactoryCached` - кэширующее прокси
+3) `Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory`
+4) `Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactoryCached` - кэширующее прокси
 
 Методы:
 
 - `getModel(int $id)` - отдает модель по ID элемента  
-- `getModelCached(int $id)` - отдает модель по ID элемента (запрос кэшируется) 
 - `getModelByIdIblock(int $id)` - отдает модель по ID инфоблока  
 - `getModelByCodeIblock(string $iblockType, string $iblockCode)` - отдает модель по типу и коду инфоблока  
-- `getModelByCodeIblockCached(string $iblockType, string $iblockCode)` - отдает модель по типу и коду инфоблока (запрос кэшируется)  
 
-3) `Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory`
+5) `Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory`
 
 Методы:
 
@@ -36,6 +35,8 @@
 Если установлен [бандл](https://github.com/ProklUng/facade.bundle), то автоматически устанавливаются два фасада:
 
 - `ModelElementFacade`
+- `ModelElementFacadeCached` (кэширующее прокси)
 - `ModelSectionFacade`
+- `ModelSectionFacadeCached` (кэширующее прокси)
 - `D7ModelFacade`
 

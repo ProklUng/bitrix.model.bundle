@@ -41,6 +41,7 @@ class ModelExtension extends Extension
         );
 
         $loader->load('services.yaml');
+        $loader->load('caching.yaml');
 
         // Фасады подтягиваются только, если установлен соответствующий бандл.
         if (class_exists('Prokl\FacadeBundle\Services\AbstractFacade')) {

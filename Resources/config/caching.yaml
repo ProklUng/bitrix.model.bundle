@@ -1,0 +1,38 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  # Кэш
+  model_bundle.cacher:
+    public: false
+    class: WebArch\BitrixCache\AntiStampedeCacheAdapter
+    arguments: ['/', '%bitrix-model.ttl_cache%', '%bitrix-model.cache_dir%']
+
+  model_bundle.reflection_processor:
+    public: false
+    class: Prokl\CacheProxificator\ReflectionProcessor
+
+  model_bundle.factory_elements_cached:
+    class: Prokl\BitrixModelBundle\Services\Factories\ModelElementFactoryCached
+    arguments:
+      - '@model_bundle.factory_elements'
+      - '@model_bundle.cacher'
+      - '@model_bundle.reflection_processor'
+      - ['getModel', 'getModelByCodeIblock', 'getModelByIdIblock']
+      - '@model_bundle.env_resolver_factory'
+
+  Prokl\BitrixModelBundle\Services\Factories\ModelElementFactoryCached: 'model_bundle.factory_elements_cached'
+
+  model_bundle.factory_sections_cached:
+    class: Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactoryCached
+    arguments:
+      - '@model_bundle.factory_elements'
+      - '@model_bundle.cacher'
+      - '@model_bundle.reflection_processor'
+      - ['getModel', 'getModelByCodeIblock', 'getModelByIdIblock']
+      - '@model_bundle.env_resolver_factory'
+
+  Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactoryCached: 'model_bundle.factory_elements_cached'
+

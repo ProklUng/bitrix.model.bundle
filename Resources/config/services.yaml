@@ -15,14 +15,14 @@ services:
   model_bundle.factory_elements:
     public: true
     class: Prokl\BitrixModelBundle\Services\Factories\ModelElementFactory
-    arguments: [!tagged_locator { tag: 'iblock.element.model', index_by: 'key' }, '@model_bundle.ciblockelement', '@model_bundle.cacher']
+    arguments: [!tagged_locator { tag: 'iblock.element.model', index_by: 'key' }, '@model_bundle.ciblockelement']
 
   Prokl\BitrixModelBundle\Services\Factories\ModelElementFactory: '@model_bundle.factory_elements'
 
   model_bundle.factory_sections:
     public: true
     class: Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory
-    arguments: [!tagged_locator { tag: 'iblock.section.model', index_by: 'key' }, '@model_bundle.ciblocksection', '@model_bundle.cacher']
+    arguments: [!tagged_locator { tag: 'iblock.section.model', index_by: 'key' }, '@model_bundle.ciblocksection']
 
   Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactory: '@model_bundle.factory_sections'
 
@@ -33,8 +33,12 @@ services:
 
   Prokl\BitrixModelBundle\Services\Factories\D7ModelFactory: '@model_bundle.d7_model'
 
-  # Кэш
-  model_bundle.cacher:
+  model_bundle.env_resolver:
     public: false
-    class: WebArch\BitrixCache\AntiStampedeCacheAdapter
-    arguments: ['/', '%bitrix-model.ttl_cache%', '%bitrix-model.cache_dir%']
+    class: Prokl\BitrixModelBundle\Services\Utils\EnvironmentResolver
+    arguments: ['%env(resolve:DEBUG)%']
+
+  model_bundle.env_resolver_factory:
+    public: false
+    class: Prokl\BitrixModelBundle\Services\Utils\EnvironmentResolver
+    factory: ['@model_bundle.env_resolver', 'getEnv']
