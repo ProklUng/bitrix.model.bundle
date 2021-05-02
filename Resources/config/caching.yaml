@@ -23,7 +23,7 @@ services:
       - ['getModel', 'getModelByCodeIblock', 'getModelByIdIblock']
       - '@model_bundle.env_resolver_factory'
 
-  Prokl\BitrixModelBundle\Services\Factories\ModelElementFactoryCached: 'model_bundle.factory_elements_cached'
+  Prokl\BitrixModelBundle\Services\Factories\ModelElementFactoryCached: '@model_bundle.factory_elements_cached'
 
   model_bundle.factory_sections_cached:
     class: Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactoryCached
@@ -34,5 +34,5 @@ services:
       - ['getModel', 'getModelByCodeIblock', 'getModelByIdIblock']
       - '@model_bundle.env_resolver_factory'
 
-  Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactoryCached: 'model_bundle.factory_elements_cached'
+  Prokl\BitrixModelBundle\Services\Factories\ModelSectionFactoryCached: '@model_bundle.factory_elements_cached'
 
